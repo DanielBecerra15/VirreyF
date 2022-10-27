@@ -366,3 +366,4 @@ base<-
          `TIPO DE COMPLICACION`,
          MORTALIDAD)
 
+runApp(appDir = "ResumenVirrey/ui.R")
