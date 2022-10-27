@@ -1,6 +1,11 @@
-
-
-
+library(readxl)
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+library(magrittr)
+library(shiny)
+library(bslib)
+library(plotly)
 # SERVER ------------------------------------------------------------------
 
 server <- function(input, output) {

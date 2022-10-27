@@ -47,6 +47,3 @@ ui <- fluidPage(
     )
   )
 )
-
-runApp("ResumenVirrey/server.R")
-
