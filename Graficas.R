@@ -21,7 +21,9 @@ if(especialidad == "NA"){
 
 base_3<- base_2 %>% 
   filter(`FECHA DE CIRUGIA`>=fecha_i & `FECHA DE CIRUGIA`<=fecha_f) %>% 
-  select(`FECHA DE CIRUGIA`, `SALA DE CIRUGIA`,`PROCEDIMIENTO 1`,`TIPO DE ANESTESIA`) 
+    select(`TIEMPO EJECUTADO`) %>% type.convert("double",as.is = T) %>% na.exclude()
+ggplot(base_3,aes(x=`TIEMPO EJECUTADO`))+ geom_histogram(bins = (1+3.322*log(nrow(base_3))),binwidth = 4)+
+  scale_x_continuous(n.breaks = 50)
 n_ptes<- nrow(base_3)
 n_ptes
 

@@ -1,7 +1,4 @@
 
-library(shiny)
-library(bslib)
-
 
 ui <- fluidPage(
   theme = bs_theme(bootswatch = "spacelab"),
@@ -42,13 +39,14 @@ ui <- fluidPage(
         tabPanel(
           "Paciente vs especialidad",
           plotOutput(outputId = "plot_esp")
+        ),
+        tabPanel(
+          "Tiempo",
+          plotOutput(outputId = "plot_time")
         )
       )
-        
     )
   )
-  
-  
 )
 
 

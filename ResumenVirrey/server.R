@@ -1,6 +1,4 @@
 
-library(shiny)
-
 server <- function(input, output) {
   output$plot_pte <- renderPlot({
     if(input$cancelacion == "NA"){
@@ -74,7 +72,26 @@ server <- function(input, output) {
                 stat = "count",
                 position = position_dodge(1))+
       theme(axis.text = element_text(angle = 90,hjust = T),
+            legend.text = element_text(position_nudge(x=0,y=50)),
             panel.grid.major.y = element_line(size = 0.01, colour = "black"))
+  })
+  output$plot_time <- renderPlot({
+    if(input$cancelacion == "NA"){
+      base_1<-base
+    } else{
+      base_1<-base %>% filter(CANCELACION==input$cancelacion)
+    }
+    
+    if(input$especialidad == "NA"){
+      base_2<-base_1
+    } else{
+      base_2<-base_1 %>% filter(`ESPECIALIDAD TRATANTE`==input$especialidad)
+    }
+    base_3<- base_2 %>% 
+      filter(`FECHA DE CIRUGIA`>=min(input$datarange) & `FECHA DE CIRUGIA`<=max(input$datarange)) %>% 
+      select(`TIEMPO EJECUTADO`) %>% type.convert("double",as.is = T) %>% na.exclude()
+    ggplot(base_3,aes(x=`TIEMPO EJECUTADO`))+ geom_histogram(bins = (1+3.322*log(nrow(base_3))),binwidth = 4)+
+      scale_x_continuous(n.breaks = 50)
   })
     
 

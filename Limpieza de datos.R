@@ -4,6 +4,7 @@ library(tidyr)
 library(ggplot2)
 library(magrittr)
 library(shiny)
+library(bslib)
 
 base <- read_excel("datos/Base_Virrey.xlsx", 
                            sheet = "General")
