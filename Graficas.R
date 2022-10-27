@@ -1,6 +1,6 @@
-fecha_i<-as.Date("2022-08-01")
-fecha_f<-as.Date("2022-10-01")
-cancelacion <- "NA"
+fecha_i<-as.Date("2022-05-01")
+fecha_f<-as.Date("2022-06-30")
+cancelacion <- "NO"
 especialidad<- "NA"
 
 
@@ -16,8 +16,29 @@ if(especialidad == "NA"){
   base_2<-base_1 %>% filter(`ESPECIALIDAD TRATANTE`==especialidad)
 }
 
-n_ptes<- base_2 %>% 
+
+# CONTADOR DE PACIENTES ---------------------------------------------------
+
+base_3<- base_2 %>% 
   filter(`FECHA DE CIRUGIA`>=fecha_i & `FECHA DE CIRUGIA`<= fecha_f) %>% 
-  select(`SALA DE CIRUGIA`) %>% 
-  nrow()
+  select(`FECHA DE CIRUGIA`, `SALA DE CIRUGIA`,`PROCEDIMIENTO 1`,`TIPO DE ANESTESIA`) 
+n_ptes<- nrow(base_3)
 n_ptes
+
+# GRAFICA DENSIDAD DE PACIENTES/TIEMPO ------------------------------------
+
+base_4<- base_3 %>% 
+  group_by(`FECHA DE CIRUGIA`) %>% 
+  tally() %>% 
+  as.data.frame() 
+
+ggplot(base_4,aes(`FECHA DE CIRUGIA`,n), xinch(x = 1))+
+  geom_line(aes(col = "red"), size = 1.2)
+
+# GRAFICA PROCEDIMIENTOS --------------------------------------------------
+
+ggplot(base_3,aes(x = `PROCEDIMIENTO 1`))+
+  geom_bar()+stat_count(geom = "text", aes(label = stat(count)))+
+  scale_x_discrete()+coord_flip()
+
+barplot(height = base_5$n, axisnames = T)
