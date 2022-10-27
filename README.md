@@ -7,5 +7,6 @@ Se analizaron 4 variables reelevantes:
   - Cancelaciones
   - Especialidad
   - tiempo
+  
 Se crearon los filtros con el fin de que las graficas respondieran unas a otras segun los parametros, y se dejó un contador de pacientes para ilustrar al 
 usuario cuantos pacientes se atendieron segun sus criterios.
