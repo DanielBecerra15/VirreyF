@@ -9,8 +9,7 @@ ui <- fluidPage(
     column(width  = 4, 
          offset = 8,
          textOutput(outputId = "num_pte"),
-         class = "secondary"
-    )
+         )
   ),
   sidebarLayout(
     sidebarPanel(
