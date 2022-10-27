@@ -346,7 +346,7 @@ cambio<- data.frame(proc_o,proc)
 for (x in 1:72) {
 base$`PROCEDIMIENTO 1`[[x]]<-base$`PROCEDIMIENTO 1`[base$`PROCEDIMIENTO 1`==cambio[x, 1]]<-cambio[x, 2]  
 }
-base$`PROCEDIMIENTO 1` <- base$`PROCEDIMIENTO 1` %>% as.data.frame() %>% View
+
 
 base<- 
   base %>%
@@ -363,3 +363,4 @@ base<-
          COMPLICACIONES,
          `TIPO DE COMPLICACION`,
          MORTALIDAD)
+

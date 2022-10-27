@@ -23,7 +23,14 @@ server <- function(input, output) {
       as.data.frame() 
     
     ggplot(base_4,aes(`FECHA DE CIRUGIA`,n), xinch(x = 1))+
-      geom_line(aes(col = "red"), size = 1.2)
+      geom_line(aes(col = "red"), 
+                size = 1.5)+
+      theme(axis.text = element_text(angle = 45),
+            panel.grid.major.y = element_line(size = 0.01, colour = "black"),
+            panel.grid.major.x = element_line(size = 0.01,colour = "black"))+
+      geom_point(color="red", show.legend = T)+
+      scale_x_date(date_breaks = "1 day")+
+      labs(colour = "Pacientes")
   })
   
   output$num_pte <- renderText({
@@ -63,7 +70,7 @@ server <- function(input, output) {
       select(`FECHA DE CIRUGIA`, `SALA DE CIRUGIA`,`PROCEDIMIENTO 1`,`TIPO DE ANESTESIA`)
     ggplot(base_3,aes(x = `PROCEDIMIENTO 1`))+
       geom_bar()+stat_count(geom = "text", aes(label = stat(count)))+
-      scale_x_discrete()+coord_flip()
+      scale_x_discrete()
   })
     
 
