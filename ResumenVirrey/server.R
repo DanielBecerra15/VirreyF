@@ -69,8 +69,12 @@ server <- function(input, output) {
       filter(`FECHA DE CIRUGIA`>=min(input$datarange) & `FECHA DE CIRUGIA`<=max(input$datarange)) %>% 
       select(`FECHA DE CIRUGIA`, `SALA DE CIRUGIA`,`PROCEDIMIENTO 1`,`TIPO DE ANESTESIA`)
     ggplot(base_3,aes(x = `PROCEDIMIENTO 1`))+
-      geom_bar()+stat_count(geom = "text", aes(label = stat(count)))+
-      scale_x_discrete()
+      geom_bar(width = 0.5,colour = "blue", fill = "skyblue")+
+      geom_text(aes(label = ..count..),
+                stat = "count",
+                position = position_dodge(1))+
+      theme(axis.text = element_text(angle = 90,hjust = T),
+            panel.grid.major.y = element_line(size = 0.01, colour = "black"))
   })
     
 

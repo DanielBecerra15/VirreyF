@@ -34,13 +34,20 @@ ui <- fluidPage(
       )
     ),
     mainPanel(
-      
-      plotOutput(outputId = "plot_pte"),
-      
-      plotOutput(outputId = "plot_esp")
-    
+      tabsetPanel(
+        tabPanel(
+          "Paciente vs fecha",
+          plotOutput(outputId = "plot_pte")
+        ),
+        tabPanel(
+          "Paciente vs especialidad",
+          plotOutput(outputId = "plot_esp")
+        )
       )
+        
+    )
   )
+  
   
 )
 
